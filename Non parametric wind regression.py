@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from statsmodels.nonparametric.smoothers_lowess import lowess
 
-# Example data loading
+# Load the data
 data = pd.read_csv(r'C:\Users\LB945465\OneDrive - University at Albany - SUNY\State University of New York\Spyder\1_Preparation of the Database\PMF_DNIC\CBPF_merged.csv',
                    index_col="Date")
 
@@ -18,11 +18,11 @@ data = pd.read_csv(r'C:\Users\LB945465\OneDrive - University at Albany - SUNY\St
 wind_direction_bins = np.arange(0, 361, 10)  # 0, 10, ..., 350, 360
 wind_direction_labels = np.arange(5, 361, 10)  # 5, 15, ..., 355, 365 (midpoints of bins)
 
-# Bin the wind direction data if not already binned
+# Bin the wind direction data 
 if 'wd_bin' not in data.columns:
     data['wd_bin'] = pd.cut(data['wd'], bins=wind_direction_bins, labels=wind_direction_labels, right=False)
 
-# Define the colors for specific column names
+# Define the colors for specific column names (for consistency)
 color_dict = {
     "Fuel evaporation": "#1f77b4",   # blue
     "Combustion": "#ff7f0e",   # orange
@@ -60,7 +60,7 @@ plt.figure(figsize=(8, 4), dpi=300)
 for source in sources_to_plot:
     plt.plot(x_values, smoothed_data[source], label=source, color=color_dict[source])
 
-# Add details to the plot
+# Create a lineplot comparison
 plt.title('LOWESS Smoothed Mean Concentration of Various Sources by Wind Direction')
 plt.xlabel('Wind Direction (°N)')
 plt.ylabel('Smoothed Mean Concentration')
