@@ -36,7 +36,7 @@ merged_df.rename(columns={'ws_ms': 'ws',
 print(merged_df)
 
 # Save the cleaned and merged dataframe to an Excel file
-output_file = "CBPF_merged.csv"
+output_file = "df_merged.csv"
 merged_df.to_csv(output_file, index=True)
 
 print("Cleaned and merged dataframe saved to", output_file)
